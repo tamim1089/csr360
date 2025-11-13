@@ -3,7 +3,6 @@
 **CSR360** is a corporate sustainability and student engagement platform built for **Odoo**.  
 It integrates seamlessly with Odoo’s **HR**, **CRM**, and **Project** apps to help organizations and universities track initiatives, pledges, KPIs, and performance dashboards — all in one place.
 
----
 
 ## ✨ Key Features
 
