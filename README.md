@@ -1,3 +1,4 @@
+![SustainHub Banner](static/description/icon.png)
 # SustainHub: Smart CSR & Sustainability Tracker
 
 A comprehensive sustainability and CSR tracking system with AI-powered insights, reporting, and integration with Odoo modules.
