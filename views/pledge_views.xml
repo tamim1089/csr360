@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Pledge List View -->
+    <record id="view_pledge_list" model="ir.ui.view">
+        <field name="name">csr.pledge.list</field>
+        <field name="model">csr.pledge</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="title"/>
+                <field name="department_id"/>
+                <field name="owner_id"/>
+                <field name="project_id"/>
+                <field name="target_value"/>
+                <field name="current_value"/>
+                <field name="unit"/>
+                <field name="progress_percent" widget="progressbar"/>
+                <field name="status" widget="badge" decoration-success="status == 'completed'" decoration-info="status == 'in_progress'" decoration-warning="status == 'at_risk'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Pledge Form View -->
+    <record id="view_pledge_form" model="ir.ui.view">
+        <field name="name">csr.pledge.form</field>
+        <field name="model">csr.pledge</field>
+        <field name="arch" type="xml">
+            <form string="Sustainability Pledge">
+                <header>
+                    <button name="action_log_progress" string="Log Progress" type="object" class="oe_highlight"/>
+                    <button name="action_analyze_impact" string="Analyze Impact" type="object"/>
+                    <button name="action_view_project" string="View Project" type="object" invisible="not project_id"/>
+                    <button name="action_view_project_tasks" string="Project Tasks" type="object" invisible="project_task_count == 0">
+                        <field name="project_task_count" widget="statinfo" string="Tasks"/>
+                    </button>
+                    <field name="status" widget="statusbar" statusbar_visible="draft,in_progress,completed"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_project"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-tasks"
+                                invisible="not project_id">
+                            <field name="project_id" widget="statinfo" string="Project"/>
+                        </button>
+                        <button name="action_view_project_tasks"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-list-check"
+                                invisible="project_task_count == 0">
+                            <field name="project_task_count" widget="statinfo" string="Tasks"/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="title"/>
+                            <field name="department_id"/>
+                            <field name="owner_id"/>
+                            <field name="project_id" widget="many2one"/>
+                        </group>
+                        <group>
+                            <field name="target_value"/>
+                            <field name="current_value" readonly="1"/>
+                            <field name="unit"/>
+                            <field name="progress_percent" widget="progressbar"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="sdg_tags" placeholder="e.g., SDG7, SDG13"/>
+                        <field name="notes" placeholder="Additional notes about this pledge..."/>
+                    </group>
+                    <notebook>
+                        <page string="Progress Updates">
+                            <field name="progress_ids" nolabel="1" context="{'default_pledge_id': id}"/>
+                        </page>
+                        <page string="Project Tasks">
+                            <field name="project_task_ids" nolabel="1" context="{'default_csr_pledge_id': id, 'default_project_id': project_id}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Pledge Kanban View -->
+    <record id="view_pledge_kanban" model="ir.ui.view">
+        <field name="name">csr.pledge.kanban</field>
+        <field name="model">csr.pledge</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="status" class="o_kanban_small_column">
+                <field name="title"/>
+                <field name="status"/>
+                <field name="progress_percent"/>
+                <field name="department_id"/>
+                <field name="owner_id"/>
+                <field name="project_id"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_card oe_kanban_global_click">
+                            <div class="oe_kanban_content">
+                                <div class="o_kanban_record_top">
+                                    <div class="o_kanban_record_headings">
+                                        <strong class="o_kanban_record_title">
+                                            <field name="title"/>
+                                        </strong>
+                                    </div>
+                                </div>
+                                <div class="o_kanban_record_body">
+                                    <div>
+                                        <field name="department_id"/>
+                                        <span> | </span>
+                                        <field name="owner_id"/>
+                                    </div>
+                                    <div class="mt-2">
+                                        <field name="progress_percent" widget="progressbar"/>
+                                        <span><field name="current_value"/> / <field name="target_value"/> <field name="unit"/></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Pledge Graph View -->
+    <record id="view_pledge_graph" model="ir.ui.view">
+        <field name="name">csr.pledge.graph</field>
+        <field name="model">csr.pledge</field>
+        <field name="arch" type="xml">
+            <graph type="bar" string="Pledge Progress by Department">
+                <field name="department_id" type="row"/>
+                <field name="progress_percent" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Pledge Action -->
+    <record id="action_pledge_pledges" model="ir.actions.act_window">
+        <field name="name">Pledges</field>
+        <field name="res_model">csr.pledge</field>
+        <field name="view_mode">kanban,list,form,graph</field>
+        <field name="context">{'search_default_in_progress': 1}</field>
+    </record>
+</odoo>

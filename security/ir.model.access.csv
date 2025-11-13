@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_pledge_user,access.pledge.user,model_csr_pledge,,1,1,1,1
+access_progress_user,access.progress.user,model_csr_progress,,1,1,1,1
+access_kpi_user,access.kpi.user,model_csr_kpi,,1,1,1,1
+access_report_user,access.report.user,model_csr_report,,1,1,1,1
+access_department_user,access.department.user,model_csr_department,,1,1,1,1
+access_dashboard_user,access.dashboard.user,model_csr_dashboard,,1,1,1,1

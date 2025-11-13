@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Progress Tree View (for One2many in pledge form) -->
+    <record id="view_progress_tree" model="ir.ui.view">
+        <field name="name">csr.progress.tree</field>
+        <field name="model">csr.progress</field>
+        <field name="arch" type="xml">
+            <list string="Progress Updates" editable="bottom">
+                <field name="date"/>
+                <field name="current_value"/>
+                <field name="notes"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Progress List View -->
+    <record id="view_progress_list" model="ir.ui.view">
+        <field name="name">csr.progress.list</field>
+        <field name="model">csr.progress</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="pledge_id"/>
+                <field name="date"/>
+                <field name="current_value"/>
+                <field name="notes"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Progress Form View -->
+    <record id="view_progress_form" model="ir.ui.view">
+        <field name="name">csr.progress.form</field>
+        <field name="model">csr.progress</field>
+        <field name="arch" type="xml">
+            <form string="Progress Update">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="pledge_id"/>
+                            <field name="date"/>
+                            <field name="current_value"/>
+                        </group>
+                        <group>
+                            <field name="notes" placeholder="Notes about this progress update..."/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Progress Action -->
+    <record id="action_progress_progress" model="ir.actions.act_window">
+        <field name="name">Progress Updates</field>
+        <field name="res_model">csr.progress</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_this_month': 1}</field>
+    </record>
+</odoo>

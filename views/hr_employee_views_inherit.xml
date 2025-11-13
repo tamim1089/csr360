@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inherit HR Employee Form View to add CSR Pledges smart button -->
+    <record id="view_employee_form_inherit_csr" model="ir.ui.view">
+        <field name="name">hr.employee.form.inherit.csr</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_csr_pledges"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-heart"
+                        invisible="csr_pledge_count == 0">
+                    <field name="csr_pledge_count" widget="statinfo" string="CSR Pledges"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

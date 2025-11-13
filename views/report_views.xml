@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Report List View -->
+    <record id="view_report_list" model="ir.ui.view">
+        <field name="name">csr.report.list</field>
+        <field name="model">csr.report</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="period"/>
+                <field name="report_date"/>
+                <field name="state" widget="badge" decoration-success="state == 'generated'" decoration-muted="state == 'draft'"/>
+                <field name="impact_score" widget="progressbar"/>
+                <field name="generated_on"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Report Form View -->
+    <record id="view_report_form" model="ir.ui.view">
+        <field name="name">csr.report.form</field>
+        <field name="model">csr.report</field>
+        <field name="arch" type="xml">
+            <form string="SustainHub Report">
+                <header>
+                    <button name="action_generate_report" string="Generate Report" type="object" class="oe_highlight"/>
+                    <button name="action_generate_pdf" string="Generate PDF" type="object" invisible="state == 'draft'" class="btn-primary"/>
+                    <button name="action_download_pdf" string="Download PDF" type="object" invisible="not pdf_generated" class="btn-success"/>
+                    <button name="action_generate_ai_pdf" string="Generate AI PDF" type="object" invisible="state == 'draft'" class="btn-info"/>
+                    <button name="action_download_ai_pdf" string="Download AI PDF" type="object" invisible="not ai_pdf_generated" class="btn-success"/>
+                    <button name="action_view_pledges" string="View Pledges" type="object" invisible="state == 'draft'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,generated"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="report_date"/>
+                            <field name="period"/>
+                            <field name="generated_on"/>
+                        </group>
+                        <group>
+                            <field name="include_all"/>
+                            <field name="status_filter"/>
+                            <field name="department_ids" widget="many2many_tags" invisible="include_all == True"/>
+                            <field name="pledge_ids" widget="many2many_tags" invisible="include_all == True"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="impact_score" widget="progressbar" readonly="1"/>
+                        <field name="on_track_status" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="kpi_snapshot" widget="text" readonly="1" nolabel="1"/>
+                    </group>
+                    <group>
+                        <group string="PDF Report" invisible="not pdf_generated">
+                            <div class="alert alert-success" role="alert" invisible="not pdf_generated">
+                                <p><strong>PDF Generated Successfully!</strong></p>
+                                <p>Click the "Download PDF" button in the header above, or use the download link below.</p>
+                            </div>
+                            <field name="pdf_filename" readonly="1"/>
+                            <field name="pdf_report" filename="pdf_filename" widget="binary" readonly="1"/>
+                        </group>
+                        <group string="AI PDF Report">
+                            <field name="ai_api_url" placeholder="http://127.0.0.1:5000/generate_report"/>
+                            <div class="alert alert-info" role="alert" invisible="ai_pdf_generated">
+                                <p>Generate an AI-powered PDF report using the external AI service.</p>
+                            </div>
+                            <field name="ai_pdf_filename" readonly="1" invisible="not ai_pdf_generated"/>
+                            <field name="ai_pdf_data" filename="ai_pdf_filename" widget="binary" readonly="1" invisible="not ai_pdf_generated"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Executive Summary">
+                            <field name="summary" readonly="1" nolabel="1" invisible="state == 'draft'"/>
+                        </page>
+                        <page string="Detailed Analysis">
+                            <field name="detailed_analysis" readonly="1" nolabel="1" invisible="state == 'draft'"/>
+                        </page>
+                        <page string="Recommendations">
+                            <field name="recommendations" widget="text" readonly="1" nolabel="1" invisible="state == 'draft'"/>
+                        </page>
+                        <page string="AI Summary">
+                            <field name="ai_summary" widget="text" readonly="1" nolabel="1" placeholder="AI-generated summary will appear here..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Report Action -->
+    <record id="action_report_reports" model="ir.actions.act_window">
+        <field name="name">Reports</field>
+        <field name="res_model">csr.report</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

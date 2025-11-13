@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ========== SustainHub Dashboard Form View ========== -->
+    <record id="action_csr_dashboard" model="ir.actions.act_window">
+        <field name="name">SustainHub Dashboard</field>
+        <field name="res_model">csr.dashboard</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+        <field name="context">{'form_view_initial_mode': 'edit'}</field>
+    </record>
+
+    <record id="view_dashboard_form" model="ir.ui.view">
+        <field name="name">csr.dashboard.form</field>
+        <field name="model">csr.dashboard</field>
+        <field name="arch" type="xml">
+            <form string="SustainHub Dashboard" create="1" delete="0">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>SustainHub Impact Dashboard</h1>
+                    </div>
+
+                    <div class="alert alert-info" role="alert">
+                        <p>This dashboard provides an overview of all sustainability initiatives and their impact.</p>
+                    </div>
+
+                    <group>
+                        <group string="Overview KPIs">
+                            <field name="total_pledges" readonly="1" widget="statinfo"/>
+                            <field name="completed_pledges" readonly="1" widget="statinfo"/>
+                            <field name="in_progress_pledges" readonly="1" widget="statinfo"/>
+                            <field name="at_risk_pledges" readonly="1" widget="statinfo"/>
+                            <field name="completion_rate" readonly="1" widget="progressbar"/>
+                        </group>
+                        <group string="Impact Metrics">
+                            <field name="energy_saved" readonly="1"/>
+                            <field name="volunteer_hours" readonly="1"/>
+                            <field name="avg_progress" readonly="1" widget="progressbar"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Summary">
+                            <div class="row">
+                                <div class="col-12">
+                                    <p><em>Dashboard statistics are computed dynamically based on current pledges and progress data.</em></p>
+                                </div>
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ========== Pie Chart: Pledge Status ========== -->
+    <record id="view_csr_pledge_status_graph" model="ir.ui.view">
+        <field name="name">csr.pledge.status.graph</field>
+        <field name="model">csr.pledge</field>
+        <field name="arch" type="xml">
+            <graph string="Pledge Status Distribution" type="pie">
+                <field name="status" type="row"/>
+                <field name="id" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="action_pledge_status_graph" model="ir.actions.act_window">
+        <field name="name">Pledge Status Chart</field>
+        <field name="res_model">csr.pledge</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="view_csr_pledge_status_graph"/>
+        <field name="target">current</field>
+    </record>
+
+    <!-- ========== Bar Graph: Departmental Progress ========== -->
+    <record id="view_csr_dept_progress_graph" model="ir.ui.view">
+        <field name="name">csr.pledge.dept.progress.graph</field>
+        <field name="model">csr.pledge</field>
+        <field name="arch" type="xml">
+            <graph string="Avg Progress by Department" type="bar">
+                <field name="department_id" type="row"/>
+                <field name="progress_percent" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="action_dept_progress_graph" model="ir.actions.act_window">
+        <field name="name">Department Progress Chart</field>
+        <field name="res_model">csr.pledge</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="view_csr_dept_progress_graph"/>
+        <field name="target">current</field>
+    </record>
+
+</odoo>
+

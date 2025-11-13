@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- === DEPARTMENTS === -->
+    <record id="dept_hr" model="csr.department">
+        <field name="name">Human Resources</field>
+    </record>
+    <record id="dept_facilities" model="csr.department">
+        <field name="name">Facilities</field>
+    </record>
+    <record id="dept_it" model="csr.department">
+        <field name="name">IT</field>
+    </record>
+    <record id="dept_marketing" model="csr.department">
+        <field name="name">Marketing</field>
+    </record>
+
+    <!-- === EMPLOYEES === -->
+    <!-- Note: hr.employee uses hr.department, but we'll create employees without department link for demo -->
+    <record id="emp_aisha" model="hr.employee">
+        <field name="name">Aisha Khan</field>
+    </record>
+    <record id="emp_omar" model="hr.employee">
+        <field name="name">Omar Ali</field>
+    </record>
+    <record id="emp_lina" model="hr.employee">
+        <field name="name">Lina Haddad</field>
+    </record>
+    <record id="emp_hassan" model="hr.employee">
+        <field name="name">Hassan Noor</field>
+    </record>
+    <record id="emp_sara" model="hr.employee">
+        <field name="name">Sara Youssef</field>
+    </record>
+    <record id="emp_nabil" model="hr.employee">
+        <field name="name">Nabil Farouk</field>
+    </record>
+    <record id="emp_maya" model="hr.employee">
+        <field name="name">Maya Zidan</field>
+    </record>
+    <record id="emp_karim" model="hr.employee">
+        <field name="name">Karim Mansour</field>
+    </record>
+
+    <!-- === PLEDGES === -->
+    <record id="pledge_paper_reduction" model="csr.pledge">
+        <field name="title">Reduce paper usage by 30%</field>
+        <field name="department_id" ref="dept_hr"/>
+        <field name="owner_id" ref="emp_aisha"/>
+        <field name="target_value">30</field>
+        <field name="unit">%</field>
+        <field name="status">in_progress</field>
+        <field name="notes">Digitize onboarding forms and promote e-signature.</field>
+    </record>
+
+    <record id="pledge_volunteer_hours" model="csr.pledge">
+        <field name="title">Log 2,500 volunteer hours</field>
+        <field name="department_id" ref="dept_hr"/>
+        <field name="owner_id" ref="emp_omar"/>
+        <field name="target_value">2500</field>
+        <field name="unit">hours</field>
+        <field name="status">in_progress</field>
+        <field name="notes">Community mentorship and health drives.</field>
+    </record>
+
+    <record id="pledge_energy_saving" model="csr.pledge">
+        <field name="title">Save 12,000 kWh electricity</field>
+        <field name="department_id" ref="dept_facilities"/>
+        <field name="owner_id" ref="emp_lina"/>
+        <field name="target_value">12000</field>
+        <field name="unit">kWh</field>
+        <field name="status">in_progress</field>
+        <field name="notes">LED retrofit and optimized AC schedule.</field>
+    </record>
+
+    <record id="pledge_plastic_free" model="csr.pledge">
+        <field name="title">Eliminate single-use plastic in pantry</field>
+        <field name="department_id" ref="dept_facilities"/>
+        <field name="owner_id" ref="emp_hassan"/>
+        <field name="target_value">30000</field>
+        <field name="unit">items</field>
+        <field name="status">completed</field>
+        <field name="notes">Replaced plastic with reusable cutlery.</field>
+    </record>
+
+    <record id="pledge_print_reduction" model="csr.pledge">
+        <field name="title">Cut printing by 50,000 pages</field>
+        <field name="department_id" ref="dept_it"/>
+        <field name="owner_id" ref="emp_sara"/>
+        <field name="target_value">50000</field>
+        <field name="unit">pages</field>
+        <field name="status">in_progress</field>
+        <field name="notes">Default duplex printing and quotas per user.</field>
+    </record>
+
+    <record id="pledge_green_cloud" model="csr.pledge">
+        <field name="title">Migrate 60% workloads to green cloud</field>
+        <field name="department_id" ref="dept_it"/>
+        <field name="owner_id" ref="emp_nabil"/>
+        <field name="target_value">60</field>
+        <field name="unit">%</field>
+        <field name="status">in_progress</field>
+        <field name="notes">Partner with renewable-energy cloud providers.</field>
+    </record>
+
+    <record id="pledge_tree_planting" model="csr.pledge">
+        <field name="title">Plant 2,000 trees with NGO partner</field>
+        <field name="department_id" ref="dept_marketing"/>
+        <field name="owner_id" ref="emp_maya"/>
+        <field name="target_value">2000</field>
+        <field name="unit">trees</field>
+        <field name="status">in_progress</field>
+        <field name="notes">Two community tree planting events planned.</field>
+    </record>
+
+    <record id="pledge_awareness_campaigns" model="csr.pledge">
+        <field name="title">Run 6 climate awareness campaigns</field>
+        <field name="department_id" ref="dept_marketing"/>
+        <field name="owner_id" ref="emp_karim"/>
+        <field name="target_value">6</field>
+        <field name="unit">count</field>
+        <field name="status">in_progress</field>
+        <field name="notes">Social media and internal climate challenges.</field>
+    </record>
+
+    <!-- Additional Pledges for Comprehensive Demo -->
+    <record id="pledge_waste_reduction" model="csr.pledge">
+        <field name="title">Reduce office waste by 40%</field>
+        <field name="department_id" ref="dept_facilities"/>
+        <field name="owner_id" ref="emp_lina"/>
+        <field name="target_value">40</field>
+        <field name="unit">%</field>
+        <field name="status">in_progress</field>
+        <field name="notes">Comprehensive recycling program and composting initiative.</field>
+    </record>
+
+    <record id="pledge_water_conservation" model="csr.pledge">
+        <field name="title">Save 50,000 gallons of water annually</field>
+        <field name="department_id" ref="dept_facilities"/>
+        <field name="owner_id" ref="emp_hassan"/>
+        <field name="target_value">50000</field>
+        <field name="unit">gallons</field>
+        <field name="status">in_progress</field>
+        <field name="notes">Low-flow fixtures and rainwater harvesting system.</field>
+    </record>
+
+    <record id="pledge_carbon_neutral" model="csr.pledge">
+        <field name="title">Achieve carbon neutral operations</field>
+        <field name="department_id" ref="dept_it"/>
+        <field name="owner_id" ref="emp_nabil"/>
+        <field name="target_value">100</field>
+        <field name="unit">%</field>
+        <field name="status">in_progress</field>
+        <field name="notes">Offset all carbon emissions through renewable energy credits.</field>
+    </record>
+
+    <record id="pledge_community_outreach" model="csr.pledge">
+        <field name="title">Engage 500 community members in CSR programs</field>
+        <field name="department_id" ref="dept_marketing"/>
+        <field name="owner_id" ref="emp_maya"/>
+        <field name="target_value">500</field>
+        <field name="unit">people</field>
+        <field name="status">in_progress</field>
+        <field name="notes">Educational workshops and community partnerships.</field>
+    </record>
+
+    <record id="pledge_sustainable_supply" model="csr.pledge">
+        <field name="title">Source 80% materials from sustainable suppliers</field>
+        <field name="department_id" ref="dept_hr"/>
+        <field name="owner_id" ref="emp_aisha"/>
+        <field name="target_value">80</field>
+        <field name="unit">%</field>
+        <field name="status">at_risk</field>
+        <field name="notes">Challenging to find certified sustainable suppliers in region.</field>
+    </record>
+
+    <!-- === PROGRESS UPDATES === -->
+    <!-- Paper Reduction -->
+    <record id="progress_paper_1" model="csr.progress">
+        <field name="pledge_id" ref="pledge_paper_reduction"/>
+        <field name="date">2025-03-15</field>
+        <field name="current_value">8</field>
+        <field name="notes">Started digital onboarding.</field>
+    </record>
+    <record id="progress_paper_2" model="csr.progress">
+        <field name="pledge_id" ref="pledge_paper_reduction"/>
+        <field name="date">2025-09-01</field>
+        <field name="current_value">24</field>
+        <field name="notes">E-signature fully adopted.</field>
+    </record>
+
+    <!-- Volunteer Hours -->
+    <record id="progress_volunteer_1" model="csr.progress">
+        <field name="pledge_id" ref="pledge_volunteer_hours"/>
+        <field name="date">2025-06-01</field>
+        <field name="current_value">800</field>
+        <field name="notes">Mentorship program launched.</field>
+    </record>
+    <record id="progress_volunteer_2" model="csr.progress">
+        <field name="pledge_id" ref="pledge_volunteer_hours"/>
+        <field name="date">2025-10-15</field>
+        <field name="current_value">2000</field>
+        <field name="notes">CSR day participation high.</field>
+    </record>
+
+    <!-- Energy Saving -->
+    <record id="progress_energy_1" model="csr.progress">
+        <field name="pledge_id" ref="pledge_energy_saving"/>
+        <field name="date">2025-05-01</field>
+        <field name="current_value">2200</field>
+        <field name="notes">LED retrofit phase 1 complete.</field>
+    </record>
+    <record id="progress_energy_2" model="csr.progress">
+        <field name="pledge_id" ref="pledge_energy_saving"/>
+        <field name="date">2025-10-01</field>
+        <field name="current_value">9800</field>
+        <field name="notes">Server room optimization done.</field>
+    </record>
+
+    <!-- Plastic Free -->
+    <record id="progress_plastic_1" model="csr.progress">
+        <field name="pledge_id" ref="pledge_plastic_free"/>
+        <field name="date">2025-06-15</field>
+        <field name="current_value">28000</field>
+        <field name="notes">Plastic banned; reusable sets distributed.</field>
+    </record>
+    <record id="progress_plastic_2" model="csr.progress">
+        <field name="pledge_id" ref="pledge_plastic_free"/>
+        <field name="date">2025-08-01</field>
+        <field name="current_value">30000</field>
+        <field name="notes">Target achieved! All single-use plastic eliminated.</field>
+    </record>
+
+    <!-- Printing Reduction -->
+    <record id="progress_print_1" model="csr.progress">
+        <field name="pledge_id" ref="pledge_print_reduction"/>
+        <field name="date">2025-03-31</field>
+        <field name="current_value">15000</field>
+        <field name="notes">Quota enforcement live.</field>
+    </record>
+
+    <!-- Green Cloud -->
+    <record id="progress_greencloud_1" model="csr.progress">
+        <field name="pledge_id" ref="pledge_green_cloud"/>
+        <field name="date">2025-07-01</field>
+        <field name="current_value">20</field>
+        <field name="notes">Migration phase 1 complete.</field>
+    </record>
+    <record id="progress_greencloud_2" model="csr.progress">
+        <field name="pledge_id" ref="pledge_green_cloud"/>
+        <field name="date">2025-10-31</field>
+        <field name="current_value">52</field>
+        <field name="notes">Phase 2 nearing completion.</field>
+    </record>
+
+    <!-- Tree Planting -->
+    <record id="progress_tree_1" model="csr.progress">
+        <field name="pledge_id" ref="pledge_tree_planting"/>
+        <field name="date">2025-06-01</field>
+        <field name="current_value">600</field>
+        <field name="notes">Earth Day event successful.</field>
+    </record>
+    <record id="progress_tree_2" model="csr.progress">
+        <field name="pledge_id" ref="pledge_tree_planting"/>
+        <field name="date">2025-09-01</field>
+        <field name="current_value">1200</field>
+        <field name="notes">Second event with NGO partner.</field>
+    </record>
+
+    <!-- Awareness Campaigns -->
+    <record id="progress_campaign_1" model="csr.progress">
+        <field name="pledge_id" ref="pledge_awareness_campaigns"/>
+        <field name="date">2025-05-31</field>
+        <field name="current_value">2</field>
+        <field name="notes">Internal and webinar campaigns.</field>
+    </record>
+    <record id="progress_campaign_2" model="csr.progress">
+        <field name="pledge_id" ref="pledge_awareness_campaigns"/>
+        <field name="date">2025-10-31</field>
+        <field name="current_value">5</field>
+        <field name="notes">Community social media series.</field>
+    </record>
+
+    <!-- Waste Reduction -->
+    <record id="progress_waste_1" model="csr.progress">
+        <field name="pledge_id" ref="pledge_waste_reduction"/>
+        <field name="date">2025-04-01</field>
+        <field name="current_value">15</field>
+        <field name="notes">Recycling bins installed in all departments.</field>
+    </record>
+    <record id="progress_waste_2" model="csr.progress">
+        <field name="pledge_id" ref="pledge_waste_reduction"/>
+        <field name="date">2025-09-15</field>
+        <field name="current_value">32</field>
+        <field name="notes">Composting program launched successfully.</field>
+    </record>
+
+    <!-- Water Conservation -->
+    <record id="progress_water_1" model="csr.progress">
+        <field name="pledge_id" ref="pledge_water_conservation"/>
+        <field name="date">2025-06-01</field>
+        <field name="current_value">12000</field>
+        <field name="notes">Low-flow fixtures installed in restrooms.</field>
+    </record>
+    <record id="progress_water_2" model="csr.progress">
+        <field name="pledge_id" ref="pledge_water_conservation"/>
+        <field name="date">2025-10-01</field>
+        <field name="current_value">38000</field>
+        <field name="notes">Rainwater harvesting system operational.</field>
+    </record>
+
+    <!-- Carbon Neutral -->
+    <record id="progress_carbon_1" model="csr.progress">
+        <field name="pledge_id" ref="pledge_carbon_neutral"/>
+        <field name="date">2025-05-01</field>
+        <field name="current_value">45</field>
+        <field name="notes">Renewable energy credits purchased for Q2.</field>
+    </record>
+    <record id="progress_carbon_2" model="csr.progress">
+        <field name="pledge_id" ref="pledge_carbon_neutral"/>
+        <field name="date">2025-10-01</field>
+        <field name="current_value">72</field>
+        <field name="notes">Solar panels installation in progress.</field>
+    </record>
+
+    <!-- Community Outreach -->
+    <record id="progress_community_1" model="csr.progress">
+        <field name="pledge_id" ref="pledge_community_outreach"/>
+        <field name="date">2025-07-01</field>
+        <field name="current_value">150</field>
+        <field name="notes">First workshop series completed.</field>
+    </record>
+    <record id="progress_community_2" model="csr.progress">
+        <field name="pledge_id" ref="pledge_community_outreach"/>
+        <field name="date">2025-10-15</field>
+        <field name="current_value">320</field>
+        <field name="notes">Partnership with local schools established.</field>
+    </record>
+
+    <!-- Sustainable Supply (At Risk) -->
+    <record id="progress_supply_1" model="csr.progress">
+        <field name="pledge_id" ref="pledge_sustainable_supply"/>
+        <field name="date">2025-03-01</field>
+        <field name="current_value">25</field>
+        <field name="notes">Initial supplier assessment completed.</field>
+    </record>
+    <record id="progress_supply_2" model="csr.progress">
+        <field name="pledge_id" ref="pledge_sustainable_supply"/>
+        <field name="date">2025-08-01</field>
+        <field name="current_value">28</field>
+        <field name="notes">Limited progress due to certification challenges.</field>
+    </record>
+
+    <!-- === KPIs === -->
+    <record id="kpi_total_pledges" model="csr.kpi">
+        <field name="name">Total Pledges</field>
+        <field name="formula">Count of all active pledges</field>
+        <field name="unit">pledges</field>
+    </record>
+
+    <record id="kpi_completion_rate" model="csr.kpi">
+        <field name="name">Completed %</field>
+        <field name="formula">(Completed pledges / Total pledges) * 100</field>
+        <field name="unit">%</field>
+    </record>
+
+    <record id="kpi_energy_saved" model="csr.kpi">
+        <field name="name">Energy Saved (kWh)</field>
+        <field name="formula">Sum of energy saved from all energy-related pledges</field>
+        <field name="unit">kWh</field>
+    </record>
+
+    <record id="kpi_volunteer_hours" model="csr.kpi">
+        <field name="name">Volunteer Hours</field>
+        <field name="formula">Sum of volunteer hours from all volunteer-related pledges</field>
+        <field name="unit">hours</field>
+    </record>
+
+    <record id="kpi_avg_progress" model="csr.kpi">
+        <field name="name">Average Progress</field>
+        <field name="formula">Average progress percentage across all pledges</field>
+        <field name="unit">%</field>
+    </record>
+
+    <!-- === REPORTS === -->
+    <record id="report_q3" model="csr.report">
+        <field name="report_date">2025-09-30</field>
+        <field name="period">2025-Q3</field>
+        <field name="include_all">True</field>
+        <field name="status_filter">all</field>
+        <field name="ai_summary">
+            70% of pledges are on track. Energy and printing initiatives show strong progress.
+            Volunteer hours growing steadily. Plastic-free initiative completed ahead of schedule.
+        </field>
+    </record>
+
+    <record id="report_q4" model="csr.report">
+        <field name="report_date">2025-10-31</field>
+        <field name="period">2025-Q4 (to date)</field>
+        <field name="include_all">True</field>
+        <field name="status_filter">all</field>
+        <field name="ai_summary">
+            Continued improvement across all departments. Green cloud migration nearing 90% completion.
+            Marketing department leading with awareness campaigns and tree planting.
+        </field>
+    </record>
+
+    <record id="report_hr_dept" model="csr.report">
+        <field name="report_date">2025-10-31</field>
+        <field name="period">2025-Q4 - HR Department</field>
+        <field name="include_all">False</field>
+        <field name="status_filter">all</field>
+        <field name="department_ids" eval="[(4, ref('dept_hr'))]"/>
+        <field name="ai_summary">
+            HR department showing strong commitment to CSR initiatives with paper reduction and volunteer programs.
+        </field>
+    </record>
+</odoo>

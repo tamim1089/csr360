@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_csr_root" name="SustainHub" sequence="10" />
+    
+    <menuitem id="menu_csr_pledges" name="Pledges" parent="menu_csr_root" sequence="10" action="action_pledge_pledges"/>
+    <menuitem id="menu_csr_progress" name="Progress" parent="menu_csr_root" sequence="20" action="action_progress_progress"/>
+    <menuitem id="menu_csr_dashboard" name="Dashboard" parent="menu_csr_root" sequence="30" action="action_csr_dashboard"/>
+    <menuitem id="menu_csr_reports" name="Reports" parent="menu_csr_root" sequence="40" action="action_report_reports"/>
+</odoo>

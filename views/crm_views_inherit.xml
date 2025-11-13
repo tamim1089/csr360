@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inherit CRM Lead Form View to add CSR Pledges field -->
+    <record id="view_crm_lead_form_inherit_csr" model="ir.ui.view">
+        <field name="name">crm.lead.form.inherit.csr</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='description']" position="after">
+                <field name="csr_pledge_ids" widget="many2many_tags" string="CSR Pledges"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
